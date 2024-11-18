@@ -154,7 +154,7 @@ def verifyemail():
 @app.route('/emailConfirmation/<token>')
 def emailConfirmation():
     try:
-        email = serialize.loads(token, salt='email-confirmation-key', max_age=60)
+        email = serialize.loads({token}, salt='email-confirmation-key', max_age=60)
     except Exception:
         return '<h1>Link is expired </h1>'
     return 'Confirmation Done'
