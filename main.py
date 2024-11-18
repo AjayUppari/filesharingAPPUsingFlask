@@ -118,18 +118,17 @@ def signup():
         else:
             new_user = User(name=name, email=email, password=password)
             new_user.set_password(password)
-
-            return redirect(url_for('verifyemail'))
         
-            flash('A Confirmation email was sent to your email, Please confirm your email.', category='success')
+            # flash('A Confirmation email was sent to your email, Please confirm your email.', category='success')
+            # return redirect(url_for('verifyemail'))
 
             flash('Account created successfully.', category='success')
 
-            # db.session.add(new_user)
-            # db.session.commit()
+            db.session.add(new_user)
+            db.session.commit()
 
-            # login_user(new_user, remember=True)
-            # return redirect(url_for('home'))
+            login_user(new_user, remember=True)
+            return redirect(url_for('home'))
         
     return render_template('signup.html', user=current_user)
 
